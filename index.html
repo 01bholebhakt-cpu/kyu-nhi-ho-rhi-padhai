@@ -3,148 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KYU NHI HO RHI PADHAI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <title>SYSTEM OVERRIDE: STUDY_MODE_v2026</title>
+    <!-- Premium Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;900&family=Syncopate:wght@700&family=Space+Grotesk:wght@300;500&display=swap" rel="stylesheet">
+    
     <style>
+        :root {
+            --primary: #00f2ff;
+            --secondary: #ff0055;
+            --bg: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            cursor: crosshair;
         }
 
         body {
-            background-color: #0e0e0e;
+            background-color: var(--bg);
             color: white;
-            font-family: 'Oswald', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             overflow: hidden;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
-            flex-direction: column;
-            text-align: center;
         }
 
-        /* Initial Screen */
-        #start-screen {
+        /* Animated Mesh Background */
+        .mesh {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle, #1a1a1a, #000);
+            background: 
+                radial-gradient(at 0% 0%, rgba(0, 242, 255, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(255, 0, 85, 0.15) 0px, transparent 50%);
+            z-index: -1;
+            animation: meshMove 10s ease infinite alternate;
+        }
+
+        @keyframes meshMove {
+            from { transform: scale(1); }
+            to { transform: scale(1.2); }
+        }
+
+        /* Step 1: The Billion Dollar Entrance */
+        #entrance {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: black;
+            z-index: 9999;
+            transition: 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+
+        .scanner {
+            width: 300px;
+            height: 300px;
+            border: 2px solid var(--primary);
+            position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            border-radius: 50%;
+            box-shadow: 0 0 50px var(--primary);
         }
 
-        .start-btn {
-            padding: 20px 40px;
-            font-size: 2rem;
-            background: #ff0000;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
-            font-family: 'Bangers', cursive;
-            letter-spacing: 2px;
-            transition: transform 0.2s;
+        .scanner::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            animation: scan 2s linear infinite;
         }
 
-        .start-btn:hover {
-            transform: scale(1.1);
-            background: #cc0000;
+        @keyframes scan {
+            0% { top: 0; }
+            100% { top: 100%; }
         }
 
-        /* Main Content */
-        #main-content {
+        .auth-btn {
+            margin-top: 40px;
+            padding: 15px 40px;
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            transition: 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .auth-btn:hover {
+            background: var(--primary);
+            color: black;
+            box-shadow: 0 0 30px var(--primary);
+        }
+
+        /* Step 2: The Main Prank Canvas */
+        #main-stage {
             display: none;
+            height: 100vh;
+            width: 100vw;
+            position: relative;
+            padding: 40px;
+        }
+
+        /* Futuristic HUD Elements */
+        .hud-box {
+            position: absolute;
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .top-left { top: 20px; left: 20px; }
+        .top-right { top: 20px; right: 20px; text-align: right; }
+        .bottom-left { bottom: 20px; left: 20px; }
+
+        .stat-value {
+            font-size: 2rem;
+            color: var(--secondary);
+            text-shadow: 0 0 10px var(--secondary);
+        }
+
+        /* THE VIDEO CONTAINER - THE HEART OF THE PRANK */
+        .video-wrapper {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70vw;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            border: 1px solid rgba(255,255,255,0.2);
+            box-shadow: 0 0 100px rgba(255, 0, 85, 0.4);
+            z-index: 10;
+            background: black;
+        }
+
+        #player {
             width: 100%;
             height: 100%;
         }
 
-        h1 {
-            font-family: 'Bangers', cursive;
-            font-size: 5rem;
-            color: #ffcc00;
-            text-shadow: 5px 5px #ff0000;
-            margin-bottom: 20px;
-            animation: shake 0.5s infinite;
-        }
-
-        .video-container {
-            position: relative;
-            width: 80%;
-            max-width: 800px;
-            border: 10px solid #ffcc00;
-            box-shadow: 0 0 50px #ffcc00;
-            margin: 0 auto;
-        }
-
-        iframe {
-            width: 100%;
-            aspect-ratio: 16/9;
-        }
-
-        /* Floating Text Creativity */
-        .floating-text {
+        .glitch-title {
             position: absolute;
-            font-size: 1.5rem;
-            color: rgba(255, 255, 255, 0.3);
+            top: 10%;
+            width: 100%;
+            text-align: center;
+            font-family: 'Syncopate', sans-serif;
+            font-size: 4rem;
+            color: white;
+            text-shadow: 2px 2px var(--secondary), -2px -2px var(--primary);
+            animation: glitch 0.2s infinite;
+            z-index: 5;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-5px, 5px); }
+            40% { transform: translate(-5px, -5px); }
+            60% { transform: translate(5px, 5px); }
+            80% { transform: translate(5px, -5px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Floating 2026 Elements */
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.3;
             pointer-events: none;
-            z-index: -1;
-            animation: float 5s linear infinite;
         }
 
-        @keyframes shake {
-            0% { transform: translate(1px, 1px) rotate(0deg); }
-            10% { transform: translate(-1px, -2px) rotate(-1deg); }
-            20% { transform: translate(-3px, 0px) rotate(1deg); }
-            30% { transform: translate(3px, 2px) rotate(0deg); }
-            40% { transform: translate(1px, -1px) rotate(1deg); }
-            50% { transform: translate(-1px, 2px) rotate(-1deg); }
-            100% { transform: translate(1px, 1px) rotate(0deg); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-            50% { opacity: 0.8; }
-            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 1.2rem;
-            color: #ff0000;
-            text-transform: uppercase;
-        }
     </style>
 </head>
 <body>
 
-    <!-- Step 1: The Trap (Start Screen) -->
-    <div id="start-screen">
-        <button class="start-btn" onclick="startPrank()">CLICK TO GET FREE EXAM TIPS!</button>
+    <div class="mesh"></div>
+
+    <!-- HIGH-END ENTRANCE TRAP -->
+    <div id="entrance">
+        <h2 style="font-family: 'Orbitron'; margin-bottom: 20px; letter-spacing: 10px; color: #555;">SECURITY CHECK</h2>
+        <div class="scanner">
+            <span id="load-text" style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--primary);">SCANNING...</span>
+        </div>
+        <p style="margin-top: 30px; opacity: 0.6; text-align: center;">BIOMETRIC AUTHENTICATION REQUIRED<br>FOR FREE 2026 EXAM TOPPER NOTES</p>
+        <button class="auth-btn" onclick="engagePrank()">AUTHORIZE & ENTER</button>
     </div>
 
-    <!-- Step 2: The Prank (Main Content) -->
-    <div id="main-content">
-        <h1>KYU NHI HO RHI PADHAI?!!!</h1>
-        
-        <div class="video-container">
-            <!-- This is the YouTube Video set to Autoplay and Unmuted via JS -->
+    <!-- THE MULTI-BILLION DOLLAR STAGE -->
+    <div id="main-stage">
+        <div class="glitch-title">PADHAI KYU NAHI HO RAHI?</div>
+
+        <div class="hud-box top-left">
+            <div>CURRENT STATUS:</div>
+            <div class="stat-value">FAILING...</div>
+            <div style="font-size: 0.7rem; margin-top: 10px;">FUTURE SECURED: 0.00%</div>
+        </div>
+
+        <div class="hud-box top-right">
+            <div>TIME WASTED TODAY:</div>
+            <div class="stat-value" id="timer">00:00:00</div>
+            <div style="font-size: 0.7rem; margin-top: 10px;">BRAIN CELLS REMAINING: 4</div>
+        </div>
+
+        <div class="hud-box bottom-left">
+            <div>DETECTED ACTIVITY:</div>
+            <div class="stat-value" style="color: var(--primary);">REEL SCROLLING</div>
+        </div>
+
+        <!-- CENTERED VIDEO -->
+        <div class="video-wrapper">
             <div id="player"></div>
         </div>
-
-        <div class="footer">
-            EXAMS ARE COMING... PADHO VRNA FAIL HO JAOGE!
-        </div>
     </div>
 
+    <!-- Sound FX for the entrance -->
+    <audio id="beep" src="https://www.soundjay.com/buttons/beep-01a.mp3"></audio>
+
     <script>
-        // Load YouTube API
+        // YouTube API Loading
         var tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
         var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -153,15 +246,16 @@
         var player;
         function onYouTubeIframeAPIReady() {
             player = new YT.Player('player', {
-                height: '360',
-                width: '640',
-                videoId: 'f_YpI9S5j1A', // The specific "Kyu nahi ho rhi padhai" video ID
+                height: '100%',
+                width: '100%',
+                videoId: 'f_YpI9S5j1A', // The scolding video
                 playerVars: {
                     'autoplay': 1,
                     'controls': 0,
+                    'modestbranding': 1,
                     'rel': 0,
-                    'loop': 1,
-                    'playlist': 'f_YpI9S5j1A' // Required for looping
+                    'showinfo': 0,
+                    'iv_load_policy': 3
                 },
                 events: {
                     'onReady': onPlayerReady
@@ -170,37 +264,64 @@
         }
 
         function onPlayerReady(event) {
-            // Player is ready but video is blocked by browser until user clicks
+            // Prepared but hidden
         }
 
-        function startPrank() {
-            // Hide start screen
-            document.getElementById('start-screen').style.display = 'none';
-            // Show main content
-            document.getElementById('main-content').style.display = 'block';
+        function engagePrank() {
+            // Play a techy beep sound
+            document.getElementById('beep').play();
             
-            // Play video with sound
-            player.playVideo();
-            player.unMute();
-            player.setVolume(100);
-
-            // Trigger background creativity
-            createFloatingText();
+            // Hide entrance with a high-end transition
+            const entrance = document.getElementById('entrance');
+            entrance.style.transform = 'scale(2)';
+            entrance.style.opacity = '0';
+            
+            setTimeout(() => {
+                entrance.style.display = 'none';
+                document.getElementById('main-stage').style.display = 'block';
+                
+                // UNMUTE AND PLAY IMMEDIATELY (Browser allows it now because of the click)
+                player.unMute();
+                player.playVideo();
+                player.setVolume(100);
+                
+                // Start the high-end background effects
+                startHUD();
+                createParticles();
+            }, 600);
         }
 
-        // Creativity: Generate floating scolding words
-        function createFloatingText() {
-            const words = ["FAIL", "PADHAI KARO", "EXAMS", "FUTURE?", "BOOKS", "NO MOBILE"];
+        function startHUD() {
+            // Fake timer for time wasted
+            let sec = 0;
             setInterval(() => {
-                const span = document.createElement('span');
-                span.className = 'floating-text';
-                span.innerText = words[Math.floor(Math.random() * words.length)];
-                span.style.left = Math.random() * 100 + "vw";
-                span.style.fontSize = (Math.random() * 2 + 1) + "rem";
-                document.body.appendChild(span);
+                sec++;
+                let m = Math.floor(sec/60);
+                let s = sec % 60;
+                document.getElementById('timer').innerText = `00:${m < 10 ? '0'+m : m}:${s < 10 ? '0'+s : s}`;
+            }, 1000);
+        }
+
+        function createParticles() {
+            for(let i=0; i<50; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 'px';
+                p.style.width = size;
+                p.style.height = size;
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = Math.random() * 100 + 'vh';
+                document.body.appendChild(p);
                 
-                setTimeout(() => span.remove(), 5000);
-            }, 300);
+                // Animate them floating
+                p.animate([
+                    { transform: 'translateY(0) rotate(0)' },
+                    { transform: `translateY(-100vh) rotate(${Math.random()*360}deg)` }
+                ], {
+                    duration: Math.random() * 5000 + 5000,
+                    iterations: Infinity
+                });
+            }
         }
     </script>
 </body>
