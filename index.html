@@ -1,158 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>📚 Padhai Alert 🚨</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KYU NHI HO RHI PADHAI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Oswald:wght@700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-    margin:0;
-    font-family:Arial, sans-serif;
-    background:linear-gradient(135deg,#ff9966,#ff5e62);
-    color:white;
-    text-align:center;
-    overflow-x:hidden;
-}
+        body {
+            background-color: #0e0e0e;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            text-align: center;
+        }
 
-.container{
-    padding:30px;
-}
+        /* Initial Screen */
+        #start-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, #1a1a1a, #000);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
 
-h1{
-    font-size:3rem;
-    animation:bounce 1s infinite alternate;
-}
+        .start-btn {
+            padding: 20px 40px;
+            font-size: 2rem;
+            background: #ff0000;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            font-family: 'Bangers', cursive;
+            letter-spacing: 2px;
+            transition: transform 0.2s;
+        }
 
-@keyframes bounce{
-    from{transform:translateY(0);}
-    to{transform:translateY(-10px);}
-}
+        .start-btn:hover {
+            transform: scale(1.1);
+            background: #cc0000;
+        }
 
-.box{
-    background:rgba(255,255,255,0.15);
-    padding:20px;
-    margin:20px auto;
-    max-width:700px;
-    border-radius:20px;
-    backdrop-filter:blur(10px);
-}
+        /* Main Content */
+        #main-content {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
 
-.dialogue{
-    font-size:1.4rem;
-    margin:15px 0;
-}
+        h1 {
+            font-family: 'Bangers', cursive;
+            font-size: 5rem;
+            color: #ffcc00;
+            text-shadow: 5px 5px #ff0000;
+            margin-bottom: 20px;
+            animation: shake 0.5s infinite;
+        }
 
-iframe{
-    width:90%;
-    max-width:800px;
-    height:450px;
-    border:none;
-    border-radius:20px;
-    box-shadow:0 0 25px rgba(0,0,0,0.4);
-}
+        .video-container {
+            position: relative;
+            width: 80%;
+            max-width: 800px;
+            border: 10px solid #ffcc00;
+            box-shadow: 0 0 50px #ffcc00;
+            margin: 0 auto;
+        }
 
-button{
-    padding:15px 30px;
-    border:none;
-    border-radius:50px;
-    font-size:1.2rem;
-    cursor:pointer;
-    background:yellow;
-    color:black;
-    font-weight:bold;
-}
+        iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
 
-button:hover{
-    transform:scale(1.1);
-}
+        /* Floating Text Creativity */
+        .floating-text {
+            position: absolute;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            pointer-events: none;
+            z-index: -1;
+            animation: float 5s linear infinite;
+        }
 
-#result{
-    margin-top:20px;
-    font-size:2rem;
-    font-weight:bold;
-}
+        @keyframes shake {
+            0% { transform: translate(1px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(3px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            100% { transform: translate(1px, 1px) rotate(0deg); }
+        }
 
-.emoji{
-    position:fixed;
-    font-size:30px;
-    animation:fall linear infinite;
-}
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
 
-@keyframes fall{
-    from{
-        transform:translateY(-100px);
-    }
-    to{
-        transform:translateY(110vh);
-    }
-}
-</style>
+        .footer {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ff0000;
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
+    <!-- Step 1: The Trap (Start Screen) -->
+    <div id="start-screen">
+        <button class="start-btn" onclick="startPrank()">CLICK TO GET FREE EXAM TIPS!</button>
+    </div>
 
-<h1>🚨 STUDY POLICE 🚨</h1>
+    <!-- Step 2: The Prank (Main Content) -->
+    <div id="main-content">
+        <h1>KYU NHI HO RHI PADHAI?!!!</h1>
+        
+        <div class="video-container">
+            <!-- This is the YouTube Video set to Autoplay and Unmuted via JS -->
+            <div id="player"></div>
+        </div>
 
-<div class="box">
-    <div class="dialogue">😎 Bhai sach sach bata...</div>
-    <div class="dialogue">📚 Padhai kar raha tha ya phir reels dekh raha tha?</div>
-    <div class="dialogue">🤨 System ne suspicious activity detect ki hai...</div>
-    <div class="dialogue">⚠️ "Exam aa raha hai aur banda YouTube pe hai!"</div>
-</div>
+        <div class="footer">
+            EXAMS ARE COMING... PADHO VRNA FAIL HO JAOGE!
+        </div>
+    </div>
 
-<div class="box">
-    <h2>🎥 Evidence Collected:</h2>
+    <script>
+        // Load YouTube API
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    <iframe
-        src="https://www.youtube.com/embed/Nx3bO9ogkcg?autoplay=1&mute=1"
-        allow="autoplay; encrypted-media"
-        allowfullscreen>
-    </iframe>
-</div>
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: 'f_YpI9S5j1A', // The specific "Kyu nahi ho rhi padhai" video ID
+                playerVars: {
+                    'autoplay': 1,
+                    'controls': 0,
+                    'rel': 0,
+                    'loop': 1,
+                    'playlist': 'f_YpI9S5j1A' // Required for looping
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+        }
 
-<div class="box">
-    <button onclick="check()">🔍 Check My Padhai Status</button>
-    <div id="result"></div>
-</div>
+        function onPlayerReady(event) {
+            // Player is ready but video is blocked by browser until user clicks
+        }
 
-</div>
+        function startPrank() {
+            // Hide start screen
+            document.getElementById('start-screen').style.display = 'none';
+            // Show main content
+            document.getElementById('main-content').style.display = 'block';
+            
+            // Play video with sound
+            player.playVideo();
+            player.unMute();
+            player.setVolume(100);
 
-<script>
+            // Trigger background creativity
+            createFloatingText();
+        }
 
-function check(){
-    const msgs = [
-        "❌ Result: Padhai 0%, Bakchodi 100%",
-        "📚 Kitab ro rahi hai bhai...",
-        "🚓 Study Police tumhare ghar ke raste me hai!",
-        "😭 Maa ko sab pata chal gaya!",
-        "⚠️ Exam Hall detected in 7 days!",
-        "💀 RIP Free Time",
-        "🤡 Topper banne ka sapna, reels chal rahi hai!"
-    ];
-
-    document.getElementById("result").innerHTML =
-        msgs[Math.floor(Math.random()*msgs.length)];
-}
-
-const emojis = ["😂","📚","🤡","🚓","😭","💀","😎","⚠️"];
-
-for(let i=0;i<25;i++){
-    let e=document.createElement("div");
-    e.className="emoji";
-    e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
-    e.style.left=Math.random()*100+"vw";
-    e.style.animationDuration=(3+Math.random()*5)+"s";
-    e.style.animationDelay=Math.random()*5+"s";
-    document.body.appendChild(e);
-}
-
-setInterval(()=>{
-    alert("📚 Oye! Padh le bhai! Exam aa raha hai! 😂");
-},30000);
-
-</script>
-
+        // Creativity: Generate floating scolding words
+        function createFloatingText() {
+            const words = ["FAIL", "PADHAI KARO", "EXAMS", "FUTURE?", "BOOKS", "NO MOBILE"];
+            setInterval(() => {
+                const span = document.createElement('span');
+                span.className = 'floating-text';
+                span.innerText = words[Math.floor(Math.random() * words.length)];
+                span.style.left = Math.random() * 100 + "vw";
+                span.style.fontSize = (Math.random() * 2 + 1) + "rem";
+                document.body.appendChild(span);
+                
+                setTimeout(() => span.remove(), 5000);
+            }, 300);
+        }
+    </script>
 </body>
 </html>
