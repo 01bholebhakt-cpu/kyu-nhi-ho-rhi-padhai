@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📚 Padhai Alert 🚨</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ff9966,#ff5e62);
+    color:white;
+    text-align:center;
+    overflow-x:hidden;
+}
+
+.container{
+    padding:30px;
+}
+
+h1{
+    font-size:3rem;
+    animation:bounce 1s infinite alternate;
+}
+
+@keyframes bounce{
+    from{transform:translateY(0);}
+    to{transform:translateY(-10px);}
+}
+
+.box{
+    background:rgba(255,255,255,0.15);
+    padding:20px;
+    margin:20px auto;
+    max-width:700px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+}
+
+.dialogue{
+    font-size:1.4rem;
+    margin:15px 0;
+}
+
+iframe{
+    width:90%;
+    max-width:800px;
+    height:450px;
+    border:none;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(0,0,0,0.4);
+}
+
+button{
+    padding:15px 30px;
+    border:none;
+    border-radius:50px;
+    font-size:1.2rem;
+    cursor:pointer;
+    background:yellow;
+    color:black;
+    font-weight:bold;
+}
+
+button:hover{
+    transform:scale(1.1);
+}
+
+#result{
+    margin-top:20px;
+    font-size:2rem;
+    font-weight:bold;
+}
+
+.emoji{
+    position:fixed;
+    font-size:30px;
+    animation:fall linear infinite;
+}
+
+@keyframes fall{
+    from{
+        transform:translateY(-100px);
+    }
+    to{
+        transform:translateY(110vh);
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🚨 STUDY POLICE 🚨</h1>
+
+<div class="box">
+    <div class="dialogue">😎 Bhai sach sach bata...</div>
+    <div class="dialogue">📚 Padhai kar raha tha ya phir reels dekh raha tha?</div>
+    <div class="dialogue">🤨 System ne suspicious activity detect ki hai...</div>
+    <div class="dialogue">⚠️ "Exam aa raha hai aur banda YouTube pe hai!"</div>
+</div>
+
+<div class="box">
+    <h2>🎥 Evidence Collected:</h2>
+
+    <iframe
+        src="https://www.youtube.com/embed/Nx3bO9ogkcg?autoplay=1&mute=1"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<div class="box">
+    <button onclick="check()">🔍 Check My Padhai Status</button>
+    <div id="result"></div>
+</div>
+
+</div>
+
+<script>
+
+function check(){
+    const msgs = [
+        "❌ Result: Padhai 0%, Bakchodi 100%",
+        "📚 Kitab ro rahi hai bhai...",
+        "🚓 Study Police tumhare ghar ke raste me hai!",
+        "😭 Maa ko sab pata chal gaya!",
+        "⚠️ Exam Hall detected in 7 days!",
+        "💀 RIP Free Time",
+        "🤡 Topper banne ka sapna, reels chal rahi hai!"
+    ];
+
+    document.getElementById("result").innerHTML =
+        msgs[Math.floor(Math.random()*msgs.length)];
+}
+
+const emojis = ["😂","📚","🤡","🚓","😭","💀","😎","⚠️"];
+
+for(let i=0;i<25;i++){
+    let e=document.createElement("div");
+    e.className="emoji";
+    e.innerHTML=emojis[Math.floor(Math.random()*emojis.length)];
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(3+Math.random()*5)+"s";
+    e.style.animationDelay=Math.random()*5+"s";
+    document.body.appendChild(e);
+}
+
+setInterval(()=>{
+    alert("📚 Oye! Padh le bhai! Exam aa raha hai! 😂");
+},30000);
+
+</script>
+
+</body>
+</html>
